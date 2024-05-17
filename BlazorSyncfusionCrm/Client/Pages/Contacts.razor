@@ -4,7 +4,7 @@
 
 <h3>Contacts</h3>
 
-<SfGrid DataSource="GridData">
+<SfGrid DataSource="GridData" AllowFiltering="true" Toolbar="@(new List<string>() {"Search"})">
     <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.CheckBox"></GridFilterSettings>
     <GridColumns>
             <GridColumn Width="60">
