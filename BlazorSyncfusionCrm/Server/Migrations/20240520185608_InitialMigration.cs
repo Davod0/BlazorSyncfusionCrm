@@ -59,9 +59,9 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                 columns: new[] { "Id", "DateCreated", "DateDeleted", "DateOfBirth", "DateUpdated", "FirstName", "IsDeleted", "LastName", "NickName", "Place" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 20, 20, 5, 28, 708, DateTimeKind.Local).AddTicks(7985), null, new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Peter", null, "Parker", "Spider-man", "New York City" },
-                    { 2, new DateTime(2024, 5, 20, 20, 5, 28, 708, DateTimeKind.Local).AddTicks(8038), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tony", null, "Stark", "Iron-man", "Malibu" },
-                    { 3, new DateTime(2024, 5, 20, 20, 5, 28, 708, DateTimeKind.Local).AddTicks(8041), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bruce", null, "Wayne", "Batman", "Gotham City" }
+                    { 1, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9272), null, new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Peter", null, "Parker", "Spider-man", "New York City" },
+                    { 2, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9333), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tony", null, "Stark", "Iron-man", "Malibu" },
+                    { 3, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9338), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bruce", null, "Wayne", "Batman", "Gotham City" }
                 });
 
             migrationBuilder.InsertData(
@@ -69,9 +69,9 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                 columns: new[] { "Id", "ContactId", "DateCreated", "Text" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 5, 20, 20, 5, 28, 708, DateTimeKind.Local).AddTicks(8235), "With great power comes great responsibility" },
-                    { 2, 2, new DateTime(2024, 5, 20, 20, 5, 28, 708, DateTimeKind.Local).AddTicks(8239), "The magic you are searching for is in the work you avoiding" },
-                    { 3, 3, new DateTime(2024, 5, 20, 20, 5, 28, 708, DateTimeKind.Local).AddTicks(8241), "do not care about people" }
+                    { 1, 1, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9579), "With great power comes great responsibility" },
+                    { 2, 2, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9584), "The magic you are searching for is in the work you avoiding" },
+                    { 3, 3, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9588), "do not care about people" }
                 });
 
             migrationBuilder.CreateIndex(
