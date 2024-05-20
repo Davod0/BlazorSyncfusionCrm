@@ -14,3 +14,4 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().Cre
 builder.Services.AddSyncfusionBlazor();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzI3MTgyMEAzMjM1MmUzMDJlMzBsL0d0ckIvaDhZM0hmellkVnJmeks0djlZVjN2T0pkcHFEYUtxL2lpRHBRPQ=="); 
 await builder.Build().RunAsync();
+    

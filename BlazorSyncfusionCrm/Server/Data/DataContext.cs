@@ -12,7 +12,7 @@ namespace BlazorSyncfusionCrm.Server.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=blazingcrm;Trusted_Connection=true;TrustServerCertificate=true");
+            optionsBuilder.UseSqlite("Data Source=Database.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,16 +35,16 @@ namespace BlazorSyncfusionCrm.Server.Data
                     LastName = "Stark",
                     NickName = "Iron-man",
                     DateOfBirth = new DateTime(1990, 8, 1),
-                    Place = "Chicago"
+                    Place = "Malibu"
                 },
               new Contact
               {
                   Id = 3,
                   FirstName = "Bruce",
-                  LastName = "Banner",
-                  NickName = "Hulk",
+                  LastName = "Wayne",
+                  NickName = "Batman",
                   DateOfBirth = new DateTime(1990, 8, 1),
-                  Place = "Ohio"
+                  Place = "Gotham City"
               }
                 );
 
