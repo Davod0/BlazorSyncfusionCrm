@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using BlazorSyncfusionCrm.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=Database.db"));
 
 
 

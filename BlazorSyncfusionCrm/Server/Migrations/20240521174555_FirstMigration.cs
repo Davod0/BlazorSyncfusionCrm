@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlazorSyncfusionCrm.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,7 +23,7 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     NickName = table.Column<string>(type: "TEXT", nullable: false),
                     Place = table.Column<string>(type: "TEXT", nullable: false),
-                    IsDeleted = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "TEXT", nullable: true),
@@ -59,9 +59,9 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                 columns: new[] { "Id", "DateCreated", "DateDeleted", "DateOfBirth", "DateUpdated", "FirstName", "IsDeleted", "LastName", "NickName", "Place" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9272), null, new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Peter", null, "Parker", "Spider-man", "New York City" },
-                    { 2, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9333), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tony", null, "Stark", "Iron-man", "Malibu" },
-                    { 3, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9338), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bruce", null, "Wayne", "Batman", "Gotham City" }
+                    { 1, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1293), null, new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Peter", false, "Parker", "Spider-man", "New York City" },
+                    { 2, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1355), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tony", false, "Stark", "Iron-man", "Malibu" },
+                    { 3, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1358), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bruce", false, "Wayne", "Batman", "Gotham City" }
                 });
 
             migrationBuilder.InsertData(
@@ -69,9 +69,9 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                 columns: new[] { "Id", "ContactId", "DateCreated", "Text" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9579), "With great power comes great responsibility" },
-                    { 2, 2, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9584), "The magic you are searching for is in the work you avoiding" },
-                    { 3, 3, new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9588), "do not care about people" }
+                    { 1, 1, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1563), "With great power comes great responsibility" },
+                    { 2, 2, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1566), "The magic you are searching for is in the work you avoiding" },
+                    { 3, 3, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1568), "do not care about people" }
                 });
 
             migrationBuilder.CreateIndex(

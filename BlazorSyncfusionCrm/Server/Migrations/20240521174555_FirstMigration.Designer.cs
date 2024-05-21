@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorSyncfusionCrm.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240520185608_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240521174555_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,8 +42,8 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("IsDeleted")
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -65,9 +65,10 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9272),
+                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1293),
                             DateOfBirth = new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Peter",
+                            IsDeleted = false,
                             LastName = "Parker",
                             NickName = "Spider-man",
                             Place = "New York City"
@@ -75,9 +76,10 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9333),
+                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1355),
                             DateOfBirth = new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Tony",
+                            IsDeleted = false,
                             LastName = "Stark",
                             NickName = "Iron-man",
                             Place = "Malibu"
@@ -85,9 +87,10 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9338),
+                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1358),
                             DateOfBirth = new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Bruce",
+                            IsDeleted = false,
                             LastName = "Wayne",
                             NickName = "Batman",
                             Place = "Gotham City"
@@ -121,21 +124,21 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         {
                             Id = 1,
                             ContactId = 1,
-                            DateCreated = new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9579),
+                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1563),
                             Text = "With great power comes great responsibility"
                         },
                         new
                         {
                             Id = 2,
                             ContactId = 2,
-                            DateCreated = new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9584),
+                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1566),
                             Text = "The magic you are searching for is in the work you avoiding"
                         },
                         new
                         {
                             Id = 3,
                             ContactId = 3,
-                            DateCreated = new DateTime(2024, 5, 20, 20, 56, 8, 245, DateTimeKind.Local).AddTicks(9588),
+                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1568),
                             Text = "do not care about people"
                         });
                 });

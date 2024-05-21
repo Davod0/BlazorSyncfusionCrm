@@ -1,8 +1,13 @@
-﻿@page "/contacts"
+﻿
+@page "/contacts"
 @inject NavigationManager NavigationManager
+@inject HttpClient Http
+
 
 
 <h3>Contacts</h3>
+
+            @* use label to show the pager is loading that the user know its comming up soon *@
 
 <SfGrid DataSource="GridData" AllowFiltering="true" Toolbar="@(new List<string>() {"Search"})">
     <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.CheckBox"></GridFilterSettings>
@@ -25,36 +30,18 @@
 </SfGrid>
 
 @code {
-    public List<Contact> GridData { get; set; } = new List<Contact>
+
+    public List<Contact> GridData { get; set; } = new List<Contact>();
+
+    protected override async Task OnInitializedAsync()
     {
-        new Contact
+        var result = await Http.GetFromJsonAsync<List<Contact>>("api/contacts");
+
+        if(result is not null)
         {
-            Id = 1,
-            FirstName = "Peter",
-            LastName = "Parker",
-            NickName = "Spider-man",
-            DateOfBirth = new DateTime(2001,8, 1),
-            Place = "New York City"
-        },
-        new Contact
-        {
-            Id = 2,
-            FirstName = "Tony",
-            LastName = "Stark",
-            NickName = "Iron-man",
-            DateOfBirth = new DateTime(1990,8, 1),
-            Place = "Chickago"
-        },
-          new Contact
-        {
-            Id = 3,
-            FirstName = "Jack",
-            LastName = "Jones",
-            NickName = "Jacky Chan",
-            DateOfBirth = new DateTime(1990,8, 1),
-            Place = "China"
+            GridData = result;
         }
-    };
+    }
 
     void EditContact(int id)
     {
