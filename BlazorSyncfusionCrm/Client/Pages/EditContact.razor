@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 
 
+
 @if(Id != null)
 {
     <h3>Edit @contact.NickName</h3>
@@ -37,6 +38,24 @@ else
 
     [Parameter]
     public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await Http.GetAsync($"api/contacts/{Id}");     
+        if(result != null)
+        {
+            var jsonResult = await result.Content.ReadFromJsonAsync<Contact>();
+            if (jsonResult != null)
+            {
+                contact = jsonResult;
+            }
+            else
+            {
+                NavigationManager.NavigateTo("contacts/new");
+            }
+        }
+    }
+
 
     public Contact contact { get; set; } = new Contact();
 

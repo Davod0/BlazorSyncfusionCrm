@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorSyncfusionCrm.Shared
 {
@@ -13,7 +14,7 @@ namespace BlazorSyncfusionCrm.Shared
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
 
-        [JsonRequired]
+        [Required]
         public string NickName { get; set; } = string.Empty;
         public string Place { get; set; } = string.Empty;
         public bool IsDeleted { get; set; }

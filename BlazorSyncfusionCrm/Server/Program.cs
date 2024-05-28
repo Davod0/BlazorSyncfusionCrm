@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.ResponseCompression;
 using BlazorSyncfusionCrm.Server.Data;
 using Microsoft.EntityFrameworkCore;
+using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSyncfusionBlazor();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=Database.db"));
 
@@ -27,7 +29,6 @@ else
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.MapRazorPages();

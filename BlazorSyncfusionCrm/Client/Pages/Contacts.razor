@@ -7,7 +7,7 @@
 
 <h3>Contacts</h3>
 
-            @* use label to show the pager is loading that the user know its comming up soon *@
+<SfSpinner @bind-Visible="@VisibleProperty" Label="Loading...."/>
 
 <SfGrid DataSource="GridData" AllowFiltering="true" Toolbar="@(new List<string>() {"Search"})">
     <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.CheckBox"></GridFilterSettings>
@@ -33,6 +33,8 @@
 
     public List<Contact> GridData { get; set; } = new List<Contact>();
 
+    private bool VisibleProperty { get; set; } = true;
+
     protected override async Task OnInitializedAsync()
     {
         var result = await Http.GetFromJsonAsync<List<Contact>>("api/contacts");
@@ -40,6 +42,7 @@
         if(result is not null)
         {
             GridData = result;
+            VisibleProperty = false;
         }
     }
 

@@ -24,10 +24,21 @@ namespace BlazorSyncfusionCrm.Server.Controllers
             return await _context.Contacts.ToListAsync();
         }
 
-        [HttpPost("")]
-        public async Task CreateContact(Contact c)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Contact>> GetContactByIdAsync(int id)
         {
-            _context.Contacts.Add(c);
+            var result = await _context.Contacts.FindAsync(id);
+            if (result == null)
+            {
+                return NotFound("Contact not found");
+            }
+            return result;
         }
+
+        //[HttpPost("")]
+        //public async Task CreateContact(Contact c)
+        //{
+        //    _context.Contacts.Add(c);
+        //}
     }
 }
