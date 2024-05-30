@@ -35,10 +35,5 @@ namespace BlazorSyncfusionCrm.Server.Controllers
             return result;
         }
 
-        //[HttpPost("")]
-        //public async Task CreateContact(Contact c)
-        //{
-        //    _context.Contacts.Add(c);
-        //}
     }
 }
