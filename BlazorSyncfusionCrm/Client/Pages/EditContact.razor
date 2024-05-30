@@ -1,12 +1,11 @@
-﻿
-@page "/contacts/edit/{id:int}"
+﻿@page "/contacts/edit/{id:int}"
 @page "/contacts/new"
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
 
 
-@if(Id != null)
+@if(Id is not null)
 {
     <h3>Edit @contact.NickName</h3>
 }
@@ -37,29 +36,51 @@ else
 @code {
 
     [Parameter]
+    public int? Id { get; set; }
 
-    public int Id { get; set; }
+    public Contact contact { get; set; } = new Contact();
+
     protected override async Task OnInitializedAsync()
     {
-        var result = await Http.GetAsync($"api/contacts/{Id}");     
-        if(result != null)
+        if(Id is not null)
         {
-            var jsonResult = await result.Content.ReadFromJsonAsync<Contact>();
-            if (jsonResult != null)
+            var result = await Http.GetAsync($"api/contacts/{Id}");     
+            if (result.IsSuccessStatusCode)
             {
-                contact = jsonResult;
+                var jsonResult = await result.Content.ReadFromJsonAsync<Contact>();
+                if(jsonResult is not null)
+                {
+                    contact = jsonResult;
+                }
             }
             else
             {
-                NavigationManager.NavigateTo("contacts/new");
+                NavigationManager.NavigateTo("/contacts/new");
             }
         }
     }
 
 
-    public Contact contact { get; set; } = new Contact();
-
     async Task HandleSubmit()
     {
+        HttpResponseMessage result;
+        if (Id != null)
+        {
+            result = await Http.PutAsJsonAsync($"api/contacts/{contact.Id}", contact);
+        }
+        else
+        {
+            result = await Http.PostAsJsonAsync($"api/contacts/", contact);
+        }
+
+        if(result.IsSuccessStatusCode)
+        {
+            var jsonResult = await result.Content.ReadFromJsonAsync<Contact>();
+            if(jsonResult != null)
+            {
+                contact = jsonResult;                
+            }
+        }
     }
+
 }
