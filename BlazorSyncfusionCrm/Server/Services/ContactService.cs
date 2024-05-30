@@ -36,9 +36,5 @@ namespace BlazorSyncfusionCrm.Server.Services
             }
             return null;
         }
-
     }
-
-
-    
 }
