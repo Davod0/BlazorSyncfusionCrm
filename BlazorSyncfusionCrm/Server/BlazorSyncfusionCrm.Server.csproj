@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\BlazorSyncfusionCrm.Client.csproj" />
     <ProjectReference Include="..\Shared\BlazorSyncfusionCrm.Shared.csproj" />
+    <!--<ProjectReference Include="..\..\BlazorSyncfusionCrm.Tests\BlazorSyncfusionCrm.Tests.csproj" />-->
   </ItemGroup>
 
 </Project>

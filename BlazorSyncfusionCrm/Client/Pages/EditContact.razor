@@ -37,8 +37,8 @@ else
 @code {
 
     [Parameter]
-    public int Id { get; set; }
 
+    public int Id { get; set; }
     protected override async Task OnInitializedAsync()
     {
         var result = await Http.GetAsync($"api/contacts/{Id}");     
@@ -63,4 +63,3 @@ else
     {
     }
 }
-        
