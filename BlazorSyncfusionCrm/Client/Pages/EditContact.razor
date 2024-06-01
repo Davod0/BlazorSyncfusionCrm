@@ -18,19 +18,28 @@ else
     <EditForm Model="contact" OnValidSubmit="HandleSubmit">
         <DataAnnotationsValidator />
         <SfTextBox CssClass="e-outline" Placeholder="First Name"
-                    FloatLabelType="@FloatLabelType.Auto" @bind-value="@contact.FirstName"/>
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="contact.FirstName" />
         <SfTextBox CssClass="e-outline" Placeholder="Last Name"
-                   FloatLabelType="@FloatLabelType.Auto" @bind-value="@contact.LastName" />
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="contact.LastName" />
         <SfTextBox CssClass="e-outline" Placeholder="Nick Name"
-                   FloatLabelType="@FloatLabelType.Auto" @bind-value="@contact.NickName" />
-                   <ValidationMessage For="(() => contact.NickName)"/>
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="contact.NickName" />
+        <ValidationMessage For="(() => contact.NickName)" />
         <SfTextBox CssClass="e-outline" Placeholder="Place"
-                   FloatLabelType="@FloatLabelType.Auto" @bind-value="@contact.Place"/>
-        <SfDatePicker TValue="DateTime?" Placeholder="Date Of Birth" FloatLabelType="@FloatLabelType.Auto"
-                      @bind-Value="contact.DateOfBirth" Format="yyyy-MM-dd"/> 
-         <hr />
-         <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Save" type="submit"/>
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="contact.Place" />
+        <SfDatePicker TValue="DateTime?" Placeholder="Date of Birth"
+                      FloatLabelType="@FloatLabelType.Auto" @bind-Value="contact.DateOfBirth"
+                      Format="MM/dd/yyyy" />
+        <hr />
+        <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Save" type="submit" />
     </EditForm>
+    <p>
+        <SfMessage Severity="MessageSeverity.Success" Visible="ShowSuccessMessage">
+            Contact saved successfully.
+        </SfMessage>
+        <SfMessage Severity="MessageSeverity.Error" Visible="ShowErrorMessage">
+            Oops, something went wrong.
+        </SfMessage>
+    </p>
 </div>
 
 @code {
@@ -39,6 +48,9 @@ else
     public int? Id { get; set; }
 
     public Contact contact { get; set; } = new Contact();
+
+    bool ShowSuccessMessage = false;
+    bool ShowErrorMessage = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -64,7 +76,7 @@ else
     async Task HandleSubmit()
     {
         HttpResponseMessage result;
-        if (Id != null)
+        if (Id is not null)
         {
             result = await Http.PutAsJsonAsync($"api/contacts/{contact.Id}", contact);
         }
@@ -76,11 +88,17 @@ else
         if(result.IsSuccessStatusCode)
         {
             var jsonResult = await result.Content.ReadFromJsonAsync<Contact>();
-            if(jsonResult != null)
+            if(jsonResult is not null)
             {
-                contact = jsonResult;                
+                contact = jsonResult;
+                ShowSuccessMessage = true;
             }
+        }
+        else
+        {
+            ShowErrorMessage = true;
         }
     }
 
+  
 }

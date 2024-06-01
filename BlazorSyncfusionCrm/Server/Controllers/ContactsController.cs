@@ -58,5 +58,16 @@ namespace BlazorSyncfusionCrm.Server.Controllers
             }
             return NotFound("The contact could not be found");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Contact>>> DeleteContact(int id)
+        {
+            var result = _contactService.DeleteContact(id);
+            if (result is not null)
+            {
+                return  await GetAllContactsAsync();
+            }
+            return NotFound("The contact could not be found");
+        }
     }
 }

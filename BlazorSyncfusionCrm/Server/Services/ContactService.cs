@@ -15,7 +15,7 @@ namespace BlazorSyncfusionCrm.Server.Services
         public async Task<List<Contact>> GetAllContacts()
         {
             List<Contact> contacts = new List<Contact>();
-            contacts = await _dataContext.Contacts.ToListAsync();
+            contacts = await _dataContext.Contacts.Where(c => c.IsDeleted == false).ToListAsync();
             if (contacts.Count > 0)
             {
                 return contacts;
@@ -57,6 +57,19 @@ namespace BlazorSyncfusionCrm.Server.Services
             await _dataContext.SaveChangesAsync();
 
             return contact;
+        }
+
+        public async Task<List<Contact>> DeleteContact(int id)
+        {
+            Contact c = await _dataContext.Contacts.FindAsync(id);
+            if (c is null)
+            {
+                return null;
+            }
+            c.IsDeleted = true;
+            c.DateDeleted = DateTime.Now;
+            await _dataContext.SaveChangesAsync();
+            return await GetAllContacts();
         }
     }
 }
