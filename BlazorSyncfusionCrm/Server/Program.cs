@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Syncfusion.Blazor;
 using BlazorSyncfusionCrm.Shared;
 using BlazorSyncfusionCrm.Server.Services;
+using BlazorSyncfusionCrm.Server.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,10 @@ builder.Services.AddSyncfusionBlazor();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=Database.db"));
 builder.Services.AddScoped<ContactService>();
+builder.Services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
 
 
- 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

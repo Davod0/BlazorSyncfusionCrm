@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BlazorSyncfusionCrm.Shared
 {
-    public class Contact
+    public class Contact : ISoftDelete
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;

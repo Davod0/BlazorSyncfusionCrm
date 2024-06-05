@@ -5,7 +5,7 @@
         Task<List<T>> GetAllAsync(); 
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T item);
-        Task<T> UpdateAsync(T item);
-        Task<T> DeleteAsync(int id);
+        Task<T> UpdateAsync(int id, T item);
+        Task<List<T>> DeleteAsync(int id);
     }
 }
