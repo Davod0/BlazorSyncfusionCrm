@@ -1,4 +1,5 @@
 ﻿using BlazorSyncfusionCrm.Server.Data;
+using BlazorSyncfusionCrm.Server.Interfaces;
 using BlazorSyncfusionCrm.Server.Services;
 using BlazorSyncfusionCrm.Shared;
 using Microsoft.AspNetCore.Http;
@@ -12,24 +13,24 @@ namespace BlazorSyncfusionCrm.Server.Controllers
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        private readonly ContactService _contactService;     
+        private readonly ICrudService<Contact> _crudService;
 
-        public ContactsController(ContactService contactService)
+        public ContactsController(ICrudService<Contact> crudService)
         {
-            _contactService = contactService;
+            _crudService = crudService;
         }
 
 
         [HttpGet("")]
         public async Task<ActionResult<List<Contact>>> GetAllContactsAsync()
         {
-            return await _contactService.GetAllContacts();
+            return await _crudService.GetAllAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Contact>> GetContactByIdAsync(int id)
         {
-            var result = await _contactService.GetContactByIdAsync(id);
+            var result = await _crudService.GetByIdAsync(id);
             if (result == null)
             {
                 return NotFound("Contact not found");
@@ -40,7 +41,7 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Contact>> CreateContact(Contact c)
         {
-            var result = await _contactService.CreateContactAsync(c);
+            var result = await _crudService.AddAsync(c);
             if (result != null)
             {
                 return Ok(result);
@@ -51,7 +52,7 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Contact>> UpdateContactAsync(int id, Contact c)
         {
-            var result = _contactService.UpdateContactAsync(id, c);
+            var result = await _crudService.UpdateAsync(id, c);
             if (result != null)
             {
                 return Ok(result);
@@ -62,7 +63,7 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Contact>>> DeleteContact(int id)
         {
-            var result = _contactService.DeleteContact(id);
+            var result = await _crudService.DeleteAsync(id);
             if (result is not null)
             {
                 return  await GetAllContactsAsync();

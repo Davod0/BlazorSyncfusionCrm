@@ -16,8 +16,6 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlite("Data So
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
