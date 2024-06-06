@@ -48,6 +48,8 @@ else
     public int? Id { get; set; }
 
     public Contact contact { get; set; } = new Contact();
+    public List<Note> notes { get; set; } = new();
+    public Note newNote { get; set; } = new Note { Text = string.Empty };
 
     bool ShowSuccessMessage = false;
     bool ShowErrorMessage = false;
@@ -100,5 +102,36 @@ else
         }
     }
 
-  
+    async Task CreateNote()
+    {
+        if(Id is null)
+        {
+            return;
+        }
+
+        newNote.ContactId = Id;
+        var result = await Http.PostAsJsonAsync($"api/notes", newNote);
+        if(result.IsSuccessStatusCode)
+        {
+            await LoadNotes();
+        }
+    }
+
+    async Task DeleteNote(int noteId)
+    {
+        var result = await Http.DeleteFromJsonAsync<List<Note>>($"api/notes{noteId}");
+        if(result is not null)
+        {
+            notes = result;
+        }
+    }
+
+    async Task LoadNotes()
+    {
+        var result = await Http.GetFromJsonAsync<List<Note>>($"api/notes{contact.Id}");
+        if(result is not null)
+        {
+            notes = result;
+        }
+    }
 }
