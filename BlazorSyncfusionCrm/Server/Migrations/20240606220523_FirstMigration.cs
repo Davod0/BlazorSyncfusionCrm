@@ -42,7 +42,9 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Text = table.Column<string>(type: "TEXT", nullable: false),
                     ContactId = table.Column<int>(type: "INTEGER", nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    DateCreated = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    DateDeleted = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,19 +61,19 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                 columns: new[] { "Id", "DateCreated", "DateDeleted", "DateOfBirth", "DateUpdated", "FirstName", "IsDeleted", "LastName", "NickName", "Place" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1293), null, new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Peter", false, "Parker", "Spider-man", "New York City" },
-                    { 2, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1355), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tony", false, "Stark", "Iron-man", "Malibu" },
-                    { 3, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1358), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bruce", false, "Wayne", "Batman", "Gotham City" }
+                    { 1, new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9773), null, new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Peter", false, "Parker", "Spider-man", "New York City" },
+                    { 2, new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9826), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Tony", false, "Stark", "Iron-man", "Malibu" },
+                    { 3, new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9829), null, new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bruce", false, "Wayne", "Batman", "Gotham City" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Notes",
-                columns: new[] { "Id", "ContactId", "DateCreated", "Text" },
+                columns: new[] { "Id", "ContactId", "DateCreated", "DateDeleted", "IsDeleted", "Text" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1563), "With great power comes great responsibility" },
-                    { 2, 2, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1566), "The magic you are searching for is in the work you avoiding" },
-                    { 3, 3, new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1568), "do not care about people" }
+                    { 1, 1, new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9977), null, false, "With great power comes great responsibility" },
+                    { 2, 2, new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9980), null, false, "The magic you are searching for is in the work you avoiding" },
+                    { 3, 3, new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9983), null, false, "do not care about people" }
                 });
 
             migrationBuilder.CreateIndex(

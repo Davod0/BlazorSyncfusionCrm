@@ -62,7 +62,7 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1293),
+                            DateCreated = new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9773),
                             DateOfBirth = new DateTime(2001, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Peter",
                             IsDeleted = false,
@@ -73,7 +73,7 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1355),
+                            DateCreated = new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9826),
                             DateOfBirth = new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Tony",
                             IsDeleted = false,
@@ -84,7 +84,7 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1358),
+                            DateCreated = new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9829),
                             DateOfBirth = new DateTime(1990, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Bruce",
                             IsDeleted = false,
@@ -106,6 +106,12 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -121,21 +127,24 @@ namespace BlazorSyncfusionCrm.Server.Migrations
                         {
                             Id = 1,
                             ContactId = 1,
-                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1563),
+                            DateCreated = new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9977),
+                            IsDeleted = false,
                             Text = "With great power comes great responsibility"
                         },
                         new
                         {
                             Id = 2,
                             ContactId = 2,
-                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1566),
+                            DateCreated = new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9980),
+                            IsDeleted = false,
                             Text = "The magic you are searching for is in the work you avoiding"
                         },
                         new
                         {
                             Id = 3,
                             ContactId = 3,
-                            DateCreated = new DateTime(2024, 5, 21, 19, 45, 55, 619, DateTimeKind.Local).AddTicks(1568),
+                            DateCreated = new DateTime(2024, 6, 7, 0, 5, 23, 395, DateTimeKind.Local).AddTicks(9983),
+                            IsDeleted = false,
                             Text = "do not care about people"
                         });
                 });
