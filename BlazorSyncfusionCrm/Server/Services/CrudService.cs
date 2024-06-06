@@ -5,6 +5,7 @@ using BlazorSyncfusionCrm.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Syncfusion.Blazor.RichTextEditor;
+using System.Linq.Expressions;
 
 namespace BlazorSyncfusionCrm.Server.Services
 {
@@ -26,6 +27,17 @@ namespace BlazorSyncfusionCrm.Server.Services
                 return result;
             }
             return null;
+        }
+
+        public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach(var item in includes)
+            {
+                query = query.Include(item);
+            }
+            return query;
         }
 
         public async Task<T> GetByIdAsync(int id)
