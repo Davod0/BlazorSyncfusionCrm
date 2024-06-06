@@ -10,5 +10,6 @@ namespace BlazorSyncfusionCrm.Server.Interfaces
         Task<T> UpdateAsync(int id, T item);
         Task<List<T>> DeleteAsync(int id);
         IQueryable<T> Include(params Expression<Func<T, object>>[] includes);
+        IQueryable<T> Where(Expression<Func<T, bool>> predicate);
     }
 }

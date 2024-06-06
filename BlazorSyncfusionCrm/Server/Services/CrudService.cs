@@ -29,17 +29,6 @@ namespace BlazorSyncfusionCrm.Server.Services
             return null;
         }
 
-        public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
-        {
-            IQueryable<T> query = _dbSet;
-
-            foreach(var item in includes)
-            {
-                query = query.Include(item);
-            }
-            return query;
-        }
-
         public async Task<T> GetByIdAsync(int id)
         {
             if (id == null)
@@ -105,6 +94,22 @@ namespace BlazorSyncfusionCrm.Server.Services
             item.DateDeleted = DateTime.Now;
             await _context.SaveChangesAsync();
             return await GetAllAsync();
+        }
+
+        public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach(var item in includes)
+            {
+                query = query.Include(item);
+            }
+            return query;
+        }
+
+        public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
         }
 
     }
