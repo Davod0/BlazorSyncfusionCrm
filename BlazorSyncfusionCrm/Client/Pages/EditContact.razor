@@ -4,7 +4,6 @@
 @inject NavigationManager NavigationManager
 
 
-
 @if(Id is not null)
 {
     <h3>Edit @contact.NickName</h3>
@@ -40,6 +39,32 @@ else
             Oops, something went wrong.
         </SfMessage>
     </p>
+
+    @if(Id is not null)
+    {
+        <h3>Notes</h3>
+       <SfTextBox CssClass="e-outline" Placeholder="New Note" Multiline="true" 
+       FloatLabelType="@FloatLabelType.Auto" @bind-Value="newNote.Text"></SfTextBox> 
+       <SfButton CssClass="e-inherit" Content="Add Note" OnClick="CreateNote"/>
+
+       <hr />
+       <p>
+            <SfButton IsPrimary="true" Content="Load All Notes" OnClick="@(async() => await LoadNotes())" />
+       </p>
+       @foreach(var note in notes)
+       {
+            <SfCard>
+                <CardHeader Title="@note.DateCreated.ToString()"/>
+                <CardContent Content="@note.Text"/>
+                <CardFooter>
+                    <CardFooterContent>
+                        <SfButton Content="Delete" IsPrimary="true" OnClick="@(() => DeleteNote(note.Id))"/>
+                    </CardFooterContent>
+                </CardFooter>
+            </SfCard>
+            <br />
+       }
+    }
 </div>
 
 @code {
@@ -117,21 +142,19 @@ else
         }
     }
 
+
     async Task DeleteNote(int noteId)
     {
-        var result = await Http.DeleteFromJsonAsync<List<Note>>($"api/notes{noteId}");
-        if(result is not null)
-        {
+        var result = await Http.DeleteFromJsonAsync<List<Note>>($"api/notes/{noteId}");
+        if (result is not null)
             notes = result;
-        }
     }
 
     async Task LoadNotes()
     {
-        var result = await Http.GetFromJsonAsync<List<Note>>($"api/notes{contact.Id}");
-        if(result is not null)
-        {
+        var result = await Http.GetFromJsonAsync<List<Note>>($"api/notes/{contact.Id}");
+        if (result is not null)
             notes = result;
-        }
     }
+
 }

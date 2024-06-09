@@ -104,12 +104,12 @@ namespace BlazorSyncfusionCrm.Server.Services
             {
                 query = query.Include(item);
             }
-            return query;
+            return query.Where(n => n.IsDeleted == false);
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.Where(predicate);
+            return _dbSet.Where(predicate).Where(n => n.IsDeleted == false);
         }
 
     }

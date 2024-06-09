@@ -5,6 +5,7 @@ using BlazorSyncfusionCrm.Shared;
 using BlazorSyncfusionCrm.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Contracts;
+using BlazorSyncfusionCrm.Server.Services;
 
 namespace BlazorSyncfusionCrm.Server.Controllers
 {
@@ -21,14 +22,9 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Note>>> GetAllNotes()
         {
-            var query =  _crudService.Include(n => n.Contact).Where(n => n.IsDeleted == false);
+            var query =  _crudService.Include(n => n.Contact);
             var result = await query.OrderByDescending(n => n.DateCreated).ToListAsync();
-
-            if (result.Count > 0)
-            {
-                return Ok(result);
-            }
-            return NotFound("There is no notes stored!");
+            return Ok(result);
         }
 
         [HttpGet("{contactId}")]
@@ -62,18 +58,19 @@ namespace BlazorSyncfusionCrm.Server.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Note>>> CreateNote(int id)
+        public async Task<ActionResult<List<Note>>> DeleteNote(int id)
         {
             if (id != 0)
             {
                 var result = _crudService.DeleteAsync(id);
-                if(result != null)
+                if(result is not null)
                 {
-                    return Ok(result);
+                    return await GetNotesFromContact(id);
                 }
-                return NotFound("The Note can not be null!");  
             }
             return BadRequest("The ID can not be null!");
         }
     }
 }
+
+

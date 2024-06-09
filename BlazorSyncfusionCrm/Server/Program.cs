@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=Database.db"));
-builder.Services.AddScoped<ContactService>();
+//builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
 
 var app = builder.Build();
