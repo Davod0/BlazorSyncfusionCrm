@@ -49,7 +49,7 @@ else
 
        <hr />
        <p>
-            <SfButton IsPrimary="true" Content="Load All Notes" OnClick="@(async() => await LoadNotes())" />
+            <SfButton IsPrimary="true" Content="Load All Notes" OnClick="LoadNotes" />
        </p>
        @foreach(var note in notes)
        {
@@ -142,7 +142,6 @@ else
         }
     }
 
-
     async Task DeleteNote(int noteId)
     {
         var result = await Http.DeleteFromJsonAsync<List<Note>>($"api/notes/{noteId}");
@@ -156,5 +155,4 @@ else
         if (result is not null)
             notes = result;
     }
-
 }
