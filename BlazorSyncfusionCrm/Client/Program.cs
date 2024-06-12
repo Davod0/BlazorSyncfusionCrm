@@ -12,6 +12,6 @@ builder.Services.AddHttpClient("BlazorSyncfusionCrm.ServerAPI", client => client
 // Supply HttpClient instances that include access tokens when making requests to the server project
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorSyncfusionCrm.ServerAPI"));
 builder.Services.AddSyncfusionBlazor();
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzI3MTgyMEAzMjM1MmUzMDJlMzBsL0d0ckIvaDhZM0hmellkVnJmeks0djlZVjN2T0pkcHFEYUtxL2lpRHBRPQ=="); 
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("API-key-From-Syncfusion"); 
 await builder.Build().RunAsync();
     
